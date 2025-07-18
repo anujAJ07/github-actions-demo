@@ -1,5 +1,5 @@
-# Use a base image with Java 17 runtime
-FROM openjdk:17-jdk-slim
+# Use a base image with Java 21 runtime
+FROM openjdk:21-jdk-slim
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -14,7 +14,7 @@ RUN ./mvnw dependency:go-offline
 # Copy the rest of the source code
 COPY src ./src
 
-# Package the application
+# Package the application (and skip tests since they already ran)
 RUN ./mvnw package -DskipTests
 
 # Expose the port the app runs on
